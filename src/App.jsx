@@ -25,7 +25,7 @@ function App() {
       const notes = await response.json();
       const modifiedNote = [];
       for (const key in notes) {
-        modifiedNote.push(notes[key]);
+        modifiedNote.push({ id: key, note: notes[key] });
       }
       setNotes(modifiedNote);
     } catch (err) {
@@ -44,7 +44,7 @@ function App() {
           <>
             <AddNote getNotes={getNotes}></AddNote>
             {notes.map((note, index) => (
-              <Note key={index} note={note}></Note>
+              <Note key={index} note={note} getNotes={getNotes}></Note>
             ))}
           </>
         )}
