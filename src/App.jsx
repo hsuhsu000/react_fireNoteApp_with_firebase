@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AddNote from "./components/AddNote";
 import Note from "./components/Note";
 import Navbar from "./components/Navbar";
+import Intro from "./components/Intro";
 
 function App() {
   //define state
@@ -36,7 +37,7 @@ function App() {
   return (
     <>
       <div className="col-6 offset-3">
-        <Navbar getNotes={getNotes}></Navbar>
+        <Navbar totalNotes={notes.length}></Navbar>
 
         {loading && !error && <p className="m-5 text-center ">Getting Notes....</p>}
         {error && !loading && <p className="m-5 text-center ">{error}</p>}
@@ -48,6 +49,7 @@ function App() {
             ))}
           </>
         )}
+        {notes.length === 0 && <Intro></Intro>}
       </div>
     </>
   );
